@@ -1,0 +1,12 @@
+**/*~
+**/.*.sw*
+tags
+**/*.jpg
+**/*.png
+
+*.log
+*.nav
+*.aux
+*.toc
+*.snm
+*.out

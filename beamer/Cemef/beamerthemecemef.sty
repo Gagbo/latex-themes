@@ -1,0 +1,272 @@
+% File created Jun 12, 2017
+% Gerry Agbobada
+% This is a beamer style for Cemef
+
+\ProvidesPackage{beamerthemecemef}[2017/06/12]
+
+%%% Defining the preamble
+\mode<presentation>
+\usepackage{pgf}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+
+%% Precise the Group and the titlepage logo
+\institute[CEMEF]{%
+    \begin{columns}[c]
+        \column[c]{.5\textwidth}
+        \centering
+        \includegraphics[width=0.5\linewidth]{logo_cemef}
+        \column[c]{.5\textwidth}
+        \centering
+        Centre for Material Forming\\
+        Mines ParisTech\\
+        PSL Research University
+\end{columns}}
+\hypersetup{pdfcreator={\LaTeX -Beamer with the Cemef Mines ParisTech theme.}}
+
+%%%%%%%%%%%%%%
+%%
+%% Color theme
+%%
+%%%%%%%%%%%%%%
+
+% Here we are defining only two colours. We are primarily only going to use the first one.
+\definecolor{Ftitle}{rgb}{0, 0, 0} % (rgb – 0, 0, 0) is nothing but black
+\definecolor{corpoBlue}{RGB}{0,94,158}
+
+\definecolor{Descitem}{RGB}{0, 0, 139}
+
+\definecolor{StdTitle}{RGB}{0, 94, 158}
+\definecolor{StdBody}{RGB}{0, 94, 158}
+\definecolor{AlTitle}{RGB}{255, 190, 190}
+\definecolor{AlBody}{RGB}{213, 24, 0}
+\definecolor{ExTitle}{RGB}{201, 217, 217}
+\definecolor{ExBody}{RGB}{213, 24, 0}
+
+\definecolor{logoLine}{RGB}{0,94,158}
+
+%%%%%%
+% Assign colours to different constitutens of the presentation as per the requriements.
+%%%%%%
+
+% Outer theme
+\setbeamercolor{background canvas}{bg = white}
+\setbeamercolor{footline text}{fg=white,bg=corpoBlue}
+
+% Titles
+\setbeamercolor{frametitle}{fg = Ftitle}
+\setbeamercolor{title}{fg = Ftitle}
+\setbeamercolor{subtitle}{fg = corpoBlue}
+% Captions
+\setbeamercolor{caption}{fg = Ftitle}
+\setbeamercolor{caption name}{fg = Ftitle}
+
+% Table of Content
+\setbeamercolor{section in toc}{fg = Descitem}
+\setbeamercolor{section in toc shaded}{fg = Descitem}
+
+% Items
+\setbeamercolor{item}{fg = Descitem}
+\setbeamercolor{subitem}{fg = Ftitle}
+\setbeamercolor{subsubitem}{fg = Ftitle}
+\setbeamercolor{description item}{fg = Descitem}
+
+% Standard block
+\setbeamercolor{block title}{fg = Descitem, bg = StdTitle!15!white}
+\setbeamercolor{block body}{bg = StdBody!5!white}
+
+% Alert block
+\setbeamercolor{block title alerted}{bg = AlTitle}
+\setbeamercolor{block body alerted}{bg = AlBody!5!white}
+
+% Example block
+\setbeamercolor{block title example}{bg = ExTitle}
+\setbeamercolor{block body example}{bg = ExBody!5!white}
+
+% Normal text
+\setbeamercolor{normal text}{fg = Ftitle}
+
+%%%%%%%%%%%%%%
+%%
+%% Font theme
+%%
+%%%%%%%%%%%%%%
+
+%%%%%%
+\usepackage{noto} % Noto font
+\usefonttheme{professionalfonts}
+
+% Font for the presentation title
+\setbeamerfont{title}{size = \huge}
+
+% Font of the frame titles
+\setbeamerfont{frametitle}{size = \Large}
+
+
+%%%%%%%%%%%%%%
+%%
+%% Inner theme
+%%
+%%%%%%%%%%%%%%
+
+%%%%%%
+% Here we am using the rounded theme for the overall “feel” of the presentation. You can change the specific details by editing that particular option as we have done below.
+\useinnertheme{rounded}
+
+% Instead of rounded circles, we will use triangles as the indicator for items.
+\setbeamertemplate{itemize items}[triangle]
+
+% The default option for enumerate environment removes the circles around the numbers provided by the “rounded” inner theme. Just simple numbers remain.
+\setbeamertemplate{enumerate items}[default]
+
+\setbeamertemplate{section in toc}[default]
+
+
+%%%%%%%%%%%%%%
+%%
+%% Outer theme
+%%
+%%%%%%%%%%%%%%
+
+% TODO Swap left and right sidebars
+% TODO Put logo on the bottom of the left sidebar
+
+\useoutertheme{sidebar}
+
+% Headline
+% Add a horizontal line that runs from left of the slide to the right, just below the logo.
+\newcommand{\LogoLine}{%
+    \raisebox{-12mm}[0pt][0pt]{%
+        \begin{pgfpicture}{0mm}{0mm}{0mm}{0mm}
+            \pgfsetlinewidth{0.28mm}
+            \color{logoLine}
+            \pgfline{\pgfpoint{\beamer@leftsidebar}{1mm}}{\pgfpoint{\paperwidth}{1mm}}
+\end{pgfpicture}}}
+
+\setbeamertemplate{headline}{\LogoLine}
+% Frametitle : Adapt to new headline
+\setbeamertemplate{frametitle}{%
+\vspace*{4mm}\hspace*{-2mm}\insertframetitle}
+
+% Footline
+\newcommand{\Ffootline}{%
+    \insertframenumber/\inserttotalframenumber % The left end of the foot line
+    \hfill
+    \textit{\insertshorttitle} % The center
+    \hfill
+\insertshortauthor} % The right end of the footline
+
+\setbeamertemplate{footline}{%
+    \usebeamerfont{structure}
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex]{footline text}%
+        \Tiny\hspace*{4mm} \Ffootline \hspace{4mm}
+\end{beamercolorbox}}
+
+
+% Sidebar Right : Add a logo on the top right corner
+\setbeamertemplate{sidebar left}{%
+    \vspace*{3pt}%
+    {\includegraphics[width=50pt]{logo_TopRight}}\\
+    \vspace*{5em}%
+\insertverticalnavigation{\beamer@sidebarwidth}}
+
+
+% Sidebar left : Uncomment to add sideways stuff on the left. Very invasive
+
+% \setbeamertemplate{sidebar canvas left}[vertical shading][top=corpoBlue,middle=corpoBlue,bottom=corpoBlue]
+
+% \setbeamertemplate{sidebar left}{%
+%     \vspace*{\fill}%
+%     \hspace{0.2em}%
+%     \Tiny\color{corpoBlue}%
+%     \rotatebox[origin=c]{90}{\insertsection}%
+%     \vfill
+% }
+
+% Navigation Symbols : *pukes*
+\setbeamertemplate{navigation symbols}{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% All this part is not used yet.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Now the toughest part–at least for me–customizing the title page.
+% Putting a logo on the title page and text beside it was quite a difficult task and to be fairly honest, my code is not effecient at all. At the very least, it is plain clumsy.
+% Though it does solve the purpose (I hate to use this phrase) it is neither “neat” nor “cool”.
+% Anyway, let’s see how we went about it.
+% For the title page, we needed a logo on the left, a vertical separater line, and finally a place for the title, author, date etc.
+
+% First, let’s create the line
+\newcommand{\TitleLine}{%
+    \raisebox{-12mm}[0pt][0pt]{%
+        \begin{pgfpicture}{0mm}{0mm}{0mm}{0mm}
+            \pgfsetlinewidth{0.10mm}
+            \color{gray}
+            \pgfline{\pgfpoint{55mm}{0mm}}{\pgfpoint{55mm}{50mm}}
+\end{pgfpicture}}}
+
+% Now let’s create commands for the title etc., that we can call later
+
+% Title
+\newcommand{\MyTitle}{%
+    \hspace*{60mm}\vspace{-25mm}
+\centering \inserttitle}
+
+% Subtitle
+\newcommand{\MySubTitle}{%
+    \hspace*{60mm}\vspace{-25mm}
+\centering \footnotesize \textit{\insertsubtitle}}
+
+% Author
+\newcommand{\MyAuthor}{%
+    \hspace*{60mm}\vspace{-25mm}
+\centering \insertauthor}
+
+% Institute
+\newcommand{\MyInstitute}{%
+    \hspace*{60mm}\vspace{-25mm}
+\centering \footnotesize \textit{\insertinstitute}}
+
+% Date
+\newcommand{\MyDate}{%
+    \hspace*{60mm}\vspace{-25mm}
+\centering \insertdate}
+
+% We declare the image that will be used as the logo
+\pgfdeclareimage[width = 0.20\paperwidth]{big}{logo_cemef}
+
+% This is quite a complicated command. We basically create a “beamercolorbox” for each field and invoke the commands that we had created earlier.
+% \setbeamertemplate{title page}{}
+% \setbeamertemplate{title page}{%
+%     \hspace*{11mm}\vspace*{-60mm}
+%     \begin{beamercolorbox}[wd=0.5\paperwidth,ht=0.13\paperwidth]{Title}
+%         \pgfuseimage{big}
+%     \end{beamercolorbox}
+%     %
+%     \begin{beamercolorbox}[wd=\paperwidth,ht=0.06\paperwidth]{Title}
+%         \usebeamerfont{Title}%
+%         \MyTitle
+%     \end{beamercolorbox}
+%     %
+%     \begin{beamercolorbox}[wd=\paperwidth,ht=0.03\paperwidth]{Title}
+%         \usebeamerfont{Title}%
+%         \MySubTitle
+%     \end{beamercolorbox}
+%     %
+%     \begin{beamercolorbox}[wd=\paperwidth,ht=0.06\paperwidth]{Title}
+%         \usebeamerfont{Title}%
+%         \MyAuthor
+%     \end{beamercolorbox}
+%     %
+%     \begin{beamercolorbox}[wd=\paperwidth,ht=0.03\paperwidth]{Title}
+%         \usebeamerfont{head/foot}%
+%         \MyInstitute
+%     \end{beamercolorbox}
+%     %
+%     \begin{beamercolorbox}[wd=\paperwidth,ht=0.07\paperwidth]{Title}
+%         \usebeamerfont{Title}%
+%         \MyDate
+% \end{beamercolorbox}}
+\mode
+<all>
